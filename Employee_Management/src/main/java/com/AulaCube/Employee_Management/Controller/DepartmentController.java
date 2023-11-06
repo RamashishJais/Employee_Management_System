@@ -28,25 +28,25 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @PostMapping
+    @PostMapping("/saveDepartment")
     public ResponseEntity<Department> createDepartment(@RequestBody Department department) {
         Department createdDepartment = departmentService.createDepartment(department);
         return ResponseEntity.ok(createdDepartment);
     }
 
-    @GetMapping
+    @GetMapping("/getAllDepartment")
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = departmentService.getAllDepartments();
         return ResponseEntity.ok(departments);
     }
 
-    @GetMapping("/{departmentId}")
+    @GetMapping("/getBydepId/{departmentId}")
     public ResponseEntity<Department> getDepartmentById(@PathVariable String departmentId) {
         Department department = departmentService.getDepartmentById(departmentId);
         return ResponseEntity.ok(department);
     }
 
-    @PutMapping("/{departmentId}")
+    @PutMapping("/updateBydepId/{departmentId}")
     public ResponseEntity<Department> updateDepartment(@PathVariable String departmentId, @RequestBody Department department) {
         // Ensure the request body's departmentId matches the path variable departmentId
         if (!departmentId.equals(department.getDepartmentId())) {
@@ -56,7 +56,7 @@ public class DepartmentController {
         return ResponseEntity.ok(updatedDepartment);
     }
 
-    @DeleteMapping("/{departmentId}")
+    @DeleteMapping("/deleteBydepId/{departmentId}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable String departmentId) {
         departmentService.deleteDepartment(departmentId);
         return ResponseEntity.noContent().build();
