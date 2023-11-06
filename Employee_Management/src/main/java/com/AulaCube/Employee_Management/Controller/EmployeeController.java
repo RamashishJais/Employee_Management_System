@@ -44,14 +44,14 @@ public class EmployeeController {
 	        return ResponseEntity.ok(employees);
 	    }
 
-	    @GetMapping("/{id}")
+	    @GetMapping("/getByempId/{id}")
 	    @ApiOperation("Get an employee by Id")
 	    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
 	        Employee employee = employeeService.getEmployeeById(id);
 	        return ResponseEntity.ok(employee);
 	    }
 
-	    @PutMapping("/{id}")
+	    @PutMapping("/updateByempId/{id}")
 	    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
 	        // Ensure the request body's ID matches the path variable ID
 	        if (!id.equals(employee.getId())) {
@@ -61,7 +61,7 @@ public class EmployeeController {
 	        return ResponseEntity.ok(updatedEmployee);
 	    }
 
-	    @DeleteMapping("/{id}")
+	    @DeleteMapping("/deleteById/{id}")
 	    public ResponseEntity<Void> deleteEmployee(@PathVariable Long id) {
 	        employeeService.deleteEmployee(id);
 	        return ResponseEntity.noContent().build();
